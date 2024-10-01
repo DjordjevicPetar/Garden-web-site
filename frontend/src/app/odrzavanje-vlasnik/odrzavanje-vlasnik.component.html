@@ -1,0 +1,43 @@
+<h1 class="my-4">Arhiva poslova</h1>
+<table class="table table-striped table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>Datum izrade</th>
+            <th>Broj fontana/bazena</th>
+            <th>Servisiranje</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let zakazivanje of listaZakazivanja">
+            <ng-container *ngIf="uporediVreme(zakazivanje.datumKraja, sad) && zakazivanje.prihvacenoOd != ''">
+                <td>{{zakazivanje.datumKraja}}</td>
+                <td *ngIf="zakazivanje.tip == 'privatna'">{{brojBazena(zakazivanje.listaOblika)}}</td>
+                <td *ngIf="zakazivanje.tip == 'restoran'">{{brojFontana(zakazivanje.listaOblika)}}</td>
+                <td *ngIf="uporediDatum(zakazivanje.datumKraja.valueOf()) && !zakazivanje.zahtevOdrzavanje">
+                    <button class="btn btn-primary" (click)="posaljiZahtev(zakazivanje)">Servisiraj</button>
+                </td>
+            </ng-container>
+        </tr>
+    </tbody>
+</table>
+
+<hr>
+
+<h1 class="my-4">Zahtevi za odrzavanje</h1>
+<table class="table table-striped table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>Datum izrade</th>
+            <th>Broj fontana/bazena</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let zakazivanje of listaZakazivanja">
+            <ng-container *ngIf="zakazivanje.zahtevOdrzavanje">
+                <td>{{zakazivanje.datumKraja}}</td>
+                <td *ngIf="zakazivanje.tip == 'privatna'">{{brojBazena(zakazivanje.listaOblika)}}</td>
+                <td *ngIf="zakazivanje.tip == 'restoran'">{{brojFontana(zakazivanje.listaOblika)}}</td>
+            </ng-container>
+        </tr>
+    </tbody>
+</table>

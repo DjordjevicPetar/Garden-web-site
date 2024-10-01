@@ -1,0 +1,46 @@
+<div class="container mt-4">
+    <table class="table table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col" (click)="sort('naziv')">Naziv</th>
+                <th scope="col" (click)="sort('adresa')">Adresa</th>
+                <th scope="col">Zaposleni</th>
+                <th scope="col">Ocena</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let firma of prikazLista">
+                <td class="align-middle" (click)="dodajZakazivanje(firma)">{{firma.naziv}}</td>
+                <td class="align-middle">{{firma.adresa}}</td>
+                <td class="align-middle">
+                    <ul class="list-unstyled mb-0">
+                        <li *ngFor="let zaposleni of firma.zaposleni">{{zaposleni}}</li>
+                    </ul>
+                </td>
+                <td class="align-middle">
+                    <div class="rating">
+                        <span [class.filled]="prosecnaOcena(firma) >= 1">&#9733;</span>
+                        <span [class.filled]="prosecnaOcena(firma) >= 2">&#9733;</span>
+                        <span [class.filled]="prosecnaOcena(firma) >= 3">&#9733;</span>
+                        <span [class.filled]="prosecnaOcena(firma) >= 4">&#9733;</span>
+                        <span [class.filled]="prosecnaOcena(firma) >= 5">&#9733;</span>
+                    </div>
+                    <small class="text-muted">{{prosecnaOcena(firma)}}</small>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr>
+
+    <div class="row g-3 mb-4">
+        <div class="col-md-6">
+            <label for="pretragaNaziv" class="form-label">Pretraga naziv</label>
+            <input type="text" id="pretragaNaziv" [(ngModel)]="pretragaNaziv" name="pretragaNaziv" (ngModelChange)="pretraga()" class="form-control">
+        </div>
+        <div class="col-md-6">
+            <label for="pretragaAdresa" class="form-label">Pretraga adresa</label>
+            <input type="text" id="pretragaAdresa" [(ngModel)]="pretragaAdresa" name="pretragaAdresa" (ngModelChange)="pretraga()" class="form-control">
+        </div>
+    </div>
+</div>

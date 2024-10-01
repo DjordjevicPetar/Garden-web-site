@@ -1,0 +1,84 @@
+
+<div class="container mt-4">
+  <form [noValidate]="false">
+    <div class="row mb-3">
+      <label class="col-sm-3 col-form-label">Korisničko ime:</label>
+      <div class="col-sm-9">
+        <p class="form-control-plaintext">{{korisnik.korIme}}</p>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <label for="ime" class="col-sm-3 col-form-label">Ime:</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" id="ime" [(ngModel)]="korisnik.ime" name="ime">
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <label for="prezime" class="col-sm-3 col-form-label">Prezime:</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" id="prezime" [(ngModel)]="korisnik.prezime" name="prezime">
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <label class="col-sm-3 col-form-label">Pol:</label>
+      <div class="col-sm-9">
+        <div class="form-check form-check-inline">
+          <input type="radio" class="form-check-input" id="muski" [(ngModel)]="korisnik.pol" value="M" name="pol">
+          <label class="form-check-label" for="muski">Muški</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input type="radio" class="form-check-input" id="zenski" [(ngModel)]="korisnik.pol" value="Z" name="pol">
+          <label class="form-check-label" for="zenski">Ženski</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <label for="adresa" class="col-sm-3 col-form-label">Adresa:</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" id="adresa" [(ngModel)]="korisnik.adresa" name="adresa">
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <label for="telefon" class="col-sm-3 col-form-label">Kontakt telefon:</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" id="telefon" [(ngModel)]="korisnik.kontaktTelefon" name="telefon">
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <label class="col-sm-3 col-form-label">Imejl:</label>
+      <div class="col-sm-9">
+        <p class="form-control-plaintext">{{korisnik.imejl}}</p>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <label class="col-sm-3 col-form-label">Slika:</label>
+      <div class="col-sm-9">
+        <div *ngIf="korisnik.slika" class="mb-2">
+          <img [src]="korisnik.slika" alt="Korisnička slika" style="max-width: 100px; max-height: 100px;" />
+        </div>
+        <input type="file" class="form-control-file" name="slika" accept=".jpg,.jpeg,.png" (change)="change($event)">
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <label for="kartica" class="col-sm-3 col-form-label">Broj kreditne kartice:</label>
+      <div class="col-sm-6">
+        <input type="text" class="form-control" id="kartica" [(ngModel)]="korisnik.kartica" name="kartica" (change)="proveriKarticu()">
+      </div>
+      <div class="col-sm-3">
+        <img *ngIf="slikaKartice" [src]="slikaKartice" alt="Slika kartice" style="max-height: 20px;">
+      </div>
+    </div>
+
+    <div class="text-danger">{{poruka}}</div>
+
+    <button class="btn btn-primary mt-3" (click)="azurirajKorisnika()">Ažuriraj</button>
+  </form>
+</div>

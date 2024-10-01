@@ -1,0 +1,94 @@
+<div class="container mt-4">
+    <h3 class="text-center mb-4">Dodaj firmu:</h3>
+    <form [noValidate]="false" class="needs-validation" novalidate>
+      <div class="mb-3">
+        <label for="naziv" class="form-label">Naziv:</label>
+        <input type="text" class="form-control" id="naziv" [(ngModel)]="naziv" name="naziv" required>
+      </div>
+      <div class="mb-3">
+        <label for="adresa" class="form-label">Adresa:</label>
+        <input type="text" class="form-control" id="adresa" [(ngModel)]="adresa" name="adresa" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Usluge:</label>
+        <div class="d-flex">
+          <div class="me-2 flex-grow-1">
+            <input type="text" class="form-control" id="nazivUsluge" [(ngModel)]="nazivUsluge" name="nazivUsluge" placeholder="Naziv usluge" required>
+          </div>
+          <div class="me-2 flex-grow-1">
+            <input type="number" class="form-control" id="cenaUsluge" [(ngModel)]="cenaUsluge" name="cenaUsluge" placeholder="Cena usluge" required>
+          </div>
+          <button type="button" class="btn btn-primary" (click)="dodajUslugu()">Dodaj uslugu</button>
+        </div>
+        <div class="mt-2">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Naziv usluge</th>
+                <th>Cena usluge</th>
+                <th>Akcija</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let usluga of usluge">
+                <td>{{usluga[0]}}</td>
+                <td>{{usluga[1]}}</td>
+                <td>
+                  <button type="button" class="btn btn-danger btn-sm" (click)="izbaciUslugu(usluga[0])">Izbaci</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="lokacija" class="form-label">Lokacija:</label>
+        <input type="text" class="form-control" id="lokacija" [(ngModel)]="lokacija" name="lokacija" required>
+      </div>
+      <div class="mb-3">
+        <label for="kontakt" class="form-label">Kontakt:</label>
+        <input type="text" class="form-control" id="kontakt" [(ngModel)]="kontakt" name="kontakt" required>
+      </div>
+      <div class="mb-3">
+        <label for="zaposleni" class="form-label">Radnici:</label>
+        <div class="d-flex">
+          <div class="me-2 flex-grow-1">
+            <select class="form-select" id="zaposleni" [(ngModel)]="oznacenDekorator" name="zaposleni">
+              <option *ngFor="let radnik of nezaposleni" [value]="radnik">{{radnik}}</option>
+            </select>
+          </div>
+          <button type="button" class="btn btn-primary" (click)="dodajZaposlenog()">Dodaj zaposlenog</button>
+        </div>
+        <div class="mt-2">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Radnik</th>
+                <th>Akcija</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let korisnik of zaposleni">
+                <td>{{korisnik}}</td>
+                <td>
+                  <button type="button" class="btn btn-danger btn-sm" (click)="izbaciZaposlenog(korisnik)">Izbaci</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="pocetakOdmora" class="form-label">Pocetak godisnjeg odmora:</label>
+        <input type="date" class="form-control" id="pocetakOdmora" name="pocetakOdmora" [(ngModel)]="pocetakOdmora">
+      </div>
+      <div class="mb-3">
+        <label for="krajOdmora" class="form-label">Kraj godisnjeg odmora:</label>
+        <input type="date" class="form-control" id="krajOdmora" name="krajOdmora" [(ngModel)]="krajOdmora">
+      </div>
+      <div class="mb-3">
+        <span class="text-danger">{{poruka}}</span>
+      </div>
+      <button type="button" class="btn btn-primary" (click)="dodajFirmu()">Dodaj firmu</button>
+    </form>
+  </div>

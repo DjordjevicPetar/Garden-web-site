@@ -1,0 +1,29 @@
+<table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>Podnosilac zahteva</th>
+        <th>Tip</th>
+        <th>Broj fontana/bazena</th>
+        <th>Prihvati</th>
+        <th>Odbij</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let zakazivanje of listaZakazivanja">
+        <ng-container *ngIf="zakazivanje.zahtevOdrzavanje">
+          <td>{{ zakazivanje.podnosilacZahteva }}</td>
+          <td>{{ zakazivanje.tip }}</td>
+          <td *ngIf="zakazivanje.tip == 'privatna'">{{ brojBazena(zakazivanje.listaOblika) }}</td>
+          <td *ngIf="zakazivanje.tip == 'restoran'">{{ brojFontana(zakazivanje.listaOblika) }}</td>
+          <td>
+            Datum kraja:
+            <input type="date" class="form-control" [(ngModel)]="zakazivanje.krajOdrzavanja">
+            <button class="btn btn-success mt-2" (click)="Prihvati(zakazivanje)">Prihvati</button>
+          </td>
+          <td>
+            <button class="btn btn-danger" (click)="Odbij(zakazivanje)">Odbij</button>
+          </td>
+        </ng-container>
+      </tr>
+    </tbody>
+  </table>

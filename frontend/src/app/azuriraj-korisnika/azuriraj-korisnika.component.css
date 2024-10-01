@@ -1,0 +1,10 @@
+.selected-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .selected-image img {
+    max-width: 100px;
+    max-height: 100px;
+  }

@@ -1,0 +1,100 @@
+<div class="container mt-5">
+  <h3 class="text-center mb-4">Registruj vlasnika:</h3>
+  
+  <form [noValidate]="false">
+    <div class="mb-3 row">
+      <label for="korIme" class="col-sm-3 col-form-label">Korisničko ime:</label>
+      <div class="col-sm-9">
+        <input type="text" [(ngModel)]="korIme" name="korIme" id="korIme" class="form-control">
+      </div>
+    </div>
+    
+    <div class="mb-3 row">
+      <label for="lozinka" class="col-sm-3 col-form-label">Lozinka:</label>
+      <div class="col-sm-9">
+        <input type="password" [(ngModel)]="lozinka" name="lozinka" id="lozinka" class="form-control">
+      </div>
+    </div>
+    
+    <div class="mb-3 row">
+      <label for="ime" class="col-sm-3 col-form-label">Ime:</label>
+      <div class="col-sm-9">
+        <input type="text" [(ngModel)]="ime" name="ime" id="ime" class="form-control">
+      </div>
+    </div>
+    
+    <div class="mb-3 row">
+      <label for="prezime" class="col-sm-3 col-form-label">Prezime:</label>
+      <div class="col-sm-9">
+        <input type="text" [(ngModel)]="prezime" name="prezime" id="prezime" class="form-control">
+      </div>
+    </div>
+    
+    <div class="mb-3 row">
+      <label class="col-sm-3 col-form-label">Pol:</label>
+      <div class="col-sm-9">
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" [(ngModel)]="pol" value="M" name="pol" id="muski">
+          <label class="form-check-label" for="muski">Muški</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" [(ngModel)]="pol" value="Z" name="pol" id="zenski">
+          <label class="form-check-label" for="zenski">Ženski</label>
+        </div>
+      </div>
+    </div>
+    
+    <div class="mb-3 row">
+      <label for="adresa" class="col-sm-3 col-form-label">Adresa:</label>
+      <div class="col-sm-9">
+        <input type="text" [(ngModel)]="adresa" name="adresa" id="adresa" class="form-control">
+      </div>
+    </div>
+    
+    <div class="mb-3 row">
+      <label for="kontaktTelefon" class="col-sm-3 col-form-label">Kontakt telefon:</label>
+      <div class="col-sm-9">
+        <input type="text" [(ngModel)]="kontaktTelefon" name="telefon" id="kontaktTelefon" class="form-control">
+      </div>
+    </div>
+    
+    <div class="mb-3 row">
+      <label for="imejl" class="col-sm-3 col-form-label">Imejl:</label>
+      <div class="col-sm-9">
+        <input type="text" [(ngModel)]="imejl" name="imejl" id="imejl" class="form-control">
+      </div>
+    </div>
+    
+    <div class="mb-3 row">
+      <label class="col-sm-3 col-form-label">Slika:</label>
+      <div class="col-sm-9">
+        <div class="selected-image no-border mb-2 text-center" *ngIf="slika!=null">
+          <img style="max-width: 100px; max-height: 100px;" src="{{slika}}" />
+        </div>
+        <input type="file" name="slika" accept=".jpg,.jpeg,.png" (change)="change($event)" class="form-control">
+      </div>
+    </div>
+    
+    <div class="mb-3 row">
+      <label for="kartica" class="col-sm-3 col-form-label">Broj kreditne kartice:</label>
+      <div class="col-sm-9">
+        <input type="text" [(ngModel)]="kartica" name="kartica" id="kartica" class="form-control" (change)="proveriKarticu()">
+        <div class="selected-image no-border mt-2" *ngIf="slikaKartice!=null">
+          <img style="max-height: 20px;" src="{{slikaKartice}}" />
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3 row">
+      <div class="col-sm-12 text-center" [hidden]="recaptcha">
+        <re-captcha (resolved)="resolved($event)" siteKey="6LdWxjYqAAAAAEnvNsAuftc1wTzynRRBQD6hs4dG"></re-captcha>
+      </div>
+    </div>
+    
+    <div class="text-danger mb-3 text-center" style="white-space: pre-line">{{poruka}}</div>
+    
+    <div class="text-center" [hidden]="!recaptcha">
+      <button (click)="dodajVlasnika()" class="btn btn-primary">Registruj se</button>
+    </div>
+  </form>
+</div>

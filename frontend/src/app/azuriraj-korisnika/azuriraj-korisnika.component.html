@@ -1,0 +1,75 @@
+<div class="container mt-4">
+    <h3 class="text-center mb-4">Promeni korisnika:</h3>
+    <form [noValidate]="false" class="needs-validation" novalidate>
+      <div class="mb-3">
+        <label for="korIme" class="form-label">Korisnicko ime:</label>
+        <label class="form-control-plaintext">{{korisnik.korIme}}</label>
+      </div>
+      <div class="mb-3">
+        <label for="ime" class="form-label">Ime:</label>
+        <input type="text" class="form-control" id="ime" [(ngModel)]="korisnik.ime" name="ime" required>
+      </div>
+      <div class="mb-3">
+        <label for="prezime" class="form-label">Prezime:</label>
+        <input type="text" class="form-control" id="prezime" [(ngModel)]="korisnik.prezime" name="prezime" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Pol:</label>
+        <div class="form-check">
+          <input type="radio" class="form-check-input" id="polM" [(ngModel)]="korisnik.pol" value="M" name="pol">
+          <label class="form-check-label" for="polM">Muski</label>
+        </div>
+        <div class="form-check">
+          <input type="radio" class="form-check-input" id="polZ" [(ngModel)]="korisnik.pol" value="Z" name="pol">
+          <label class="form-check-label" for="polZ">Zenski</label>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="adresa" class="form-label">Adresa:</label>
+        <input type="text" class="form-control" id="adresa" [(ngModel)]="korisnik.adresa" name="adresa" required>
+      </div>
+      <div class="mb-3">
+        <label for="kontaktTelefon" class="form-label">Kontakt telefon:</label>
+        <input type="text" class="form-control" id="kontaktTelefon" [(ngModel)]="korisnik.kontaktTelefon" name="telefon" required>
+      </div>
+      <div class="mb-3">
+        <label for="imejl" class="form-label">Imejl:</label>
+        <label class="form-control-plaintext">{{korisnik.imejl}}</label>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Slika:</label>
+        <div class="d-flex align-items-center mb-2">
+          <div class="selected-image me-3" *ngIf="korisnik.slika != null">
+            <img class="img-thumbnail" [src]="korisnik.slika" alt="Slika korisnika">
+          </div>
+          <input type="file" class="form-control" name="slika" accept=".jpg,.jpeg,.png" (change)="change($event)">
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="kartica" class="form-label">Broj kreditne kartice:</label>
+        <input type="text" class="form-control" id="kartica" [(ngModel)]="korisnik.kartica" name="kartica" (change)="proveriKarticu()">
+        <div class="selected-image mt-2" *ngIf="slikaKartice != null">
+          <img class="img-thumbnail" [src]="slikaKartice" alt="Slika kartice">
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Tip:</label>
+        <div class="form-check">
+          <input type="radio" class="form-check-input" id="tipAdmin" [(ngModel)]="korisnik.tip" value="admin" name="tip">
+          <label class="form-check-label" for="tipAdmin">Admin</label>
+        </div>
+        <div class="form-check">
+          <input type="radio" class="form-check-input" id="tipVlasnik" [(ngModel)]="korisnik.tip" value="vlasnik" name="tip">
+          <label class="form-check-label" for="tipVlasnik">Vlasnik</label>
+        </div>
+        <div class="form-check">
+          <input type="radio" class="form-check-input" id="tipDekorater" [(ngModel)]="korisnik.tip" value="dekorater" name="tip">
+          <label class="form-check-label" for="tipDekorater">Dekorater</label>
+        </div>
+      </div>
+      <div class="mb-3">
+        <span class="text-danger">{{poruka}}</span>
+      </div>
+      <button type="button" class="btn btn-primary" (click)="azurirajKorisnika()">Azuriraj</button>
+    </form>
+  </div>

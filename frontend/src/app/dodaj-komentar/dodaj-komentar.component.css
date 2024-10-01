@@ -1,0 +1,24 @@
+.rating {
+    unicode-bidi: bidi-override;
+    color: #ccc;
+    font-size: 2rem;
+    cursor: pointer;
+    display: inline-flex;
+  }
+  
+  .rating span {
+    transition: color 0.2s;
+  }
+  
+  .rating span.filled {
+    color: gold;
+  }
+  
+  .rating span:hover,
+  .rating span:hover ~ span {
+    color: gold;
+  }
+  
+  .rating span:hover ~ span {
+    color: #ccc;
+  }

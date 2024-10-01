@@ -1,0 +1,59 @@
+<h1 class="text-center mb-4">Aktivni poslovi</h1>
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Datum zakazivanja</th>
+      <th>Datum pocetka izrade</th>
+      <th>Naziv firme</th>
+      <th>Odabrane usluge</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let zakazivanje of listaZakazivanja">
+      <ng-container *ngIf="zakazivanje.vremePodnosenjaZahteva.valueOf() == zakazivanje.datumKraja.valueOf()">
+        <td>{{zakazivanje.vremePodnosenjaZahteva}}</td>
+        <td>{{zakazivanje.vremeDolaska}}</td>
+        <td>{{zakazivanje.nazivFirme}}</td>
+        <td>
+          <ol class="list-unstyled">
+            <li *ngFor="let item of zakazivanje.odabraneUsluge">{{item[0]}}</li>
+          </ol>
+        </td>
+      </ng-container>
+    </tr>
+  </tbody>
+</table>
+
+<h1 class="text-center mb-4">Arhiva poslova</h1>
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Datum izrade</th>
+      <th>Naziv firme</th>
+      <th>Komentar</th>
+      <th>Ocena</th>
+      <th>Akcija</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let zakazivanje of listaZakazivanja">
+      <ng-container *ngIf="uporediVreme(zakazivanje.datumKraja, sad) && zakazivanje.prihvacenoOd != ''">
+        <td>{{zakazivanje.datumKraja}}</td>
+        <td>{{zakazivanje.nazivFirme}}</td>
+        <td>{{zakazivanje.komentarZavrsetka}}</td>
+        <td>
+          <div class="rating">
+            <span [class.filled]="zakazivanje.ocena >= 1">&#9733;</span>
+            <span [class.filled]="zakazivanje.ocena >= 2">&#9733;</span>
+            <span [class.filled]="zakazivanje.ocena >= 3">&#9733;</span>
+            <span [class.filled]="zakazivanje.ocena >= 4">&#9733;</span>
+            <span [class.filled]="zakazivanje.ocena >= 5">&#9733;</span>
+          </div>
+        </td>
+        <td *ngIf="zakazivanje.komentarZavrsetka == ''">
+          <button class="btn btn-primary" (click)="promeniKomentar(zakazivanje)">Dodaj komentar</button>
+        </td>
+      </ng-container>
+    </tr>
+  </tbody>
+</table>

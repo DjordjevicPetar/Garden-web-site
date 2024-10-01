@@ -1,0 +1,135 @@
+<h1 class="text-center mb-4">Baste restorana</h1>
+<table class="table table-striped table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>Vreme pocetka</th>
+      <th>Kvadratura baste</th>
+      <th>Kvadratura zelenila</th>
+      <th>Kvadratura fontane</th>
+      <th>Broj stolova</th>
+      <th>Broj stolica</th>
+      <th>Opis</th>
+      <th>Odabrane usluge</th>
+      <th>Prihvati</th>
+      <th>Odbij</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let zakazivanje of listaZakazivanja">
+      <ng-container *ngIf="zakazivanje.tip == 'restoran' && zakazivanje.prihvacenoOd == '' && !zakazivanje.odbijeno">
+        <td>{{ zakazivanje.vremeDolaska }}</td>
+        <td>{{ zakazivanje.kvadraturaBaste }}</td>
+        <td>{{ zakazivanje.kvadraturaZelenilo }}</td>
+        <td>{{ zakazivanje.kvadraturaFontane }}</td>
+        <td>{{ zakazivanje.brojStolova }}</td>
+        <td>{{ zakazivanje.brojStolica }}</td>
+        <td>{{ zakazivanje.opis }}</td>
+        <td>
+          <ol class="list-unstyled">
+            <li *ngFor="let item of zakazivanje.odabraneUsluge">{{ item[0] }}</li>
+          </ol>
+        </td>
+        <td>
+          <label for="datumKrajaRestoran" class="form-label">Datum pretpostavljenog kraja</label>
+          <input id="datumKrajaRestoran" type="date" class="form-control mb-2" [(ngModel)]="zakazivanje.datumKraja">
+          <button class="btn btn-success" (click)="potvrdi(true, zakazivanje)">Prihvati</button>
+        </td>
+        <td>
+          <label for="komentarOdbijanjaRestoran" class="form-label">Komentar</label>
+          <input id="komentarOdbijanjaRestoran" type="text" class="form-control mb-2" [(ngModel)]="zakazivanje.komentarOdbijanja">
+          <button class="btn btn-danger" (click)="potvrdi(false, zakazivanje)">Odbij</button>
+        </td>
+      </ng-container>
+    </tr>
+  </tbody>
+</table>
+<h1 class="text-center mb-4">Privatne baste</h1>
+<table class="table table-striped table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>Vreme pocetka</th>
+      <th>Kvadratura baste</th>
+      <th>Kvadratura zelenila</th>
+      <th>Kvadratura bazen</th>
+      <th>Kvadratura lezaljki i stolova</th>
+      <th>Opis</th>
+      <th>Odabrane usluge</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let zakazivanje of listaZakazivanja">
+      <ng-container *ngIf="zakazivanje.tip == 'privatna' && zakazivanje.prihvacenoOd == '' && !zakazivanje.odbijeno">
+        <td>{{ zakazivanje.vremeDolaska }}</td>
+        <td>{{ zakazivanje.kvadraturaBaste }}</td>
+        <td>{{ zakazivanje.kvadraturaZelenilo }}</td>
+        <td>{{ zakazivanje.kvadraturaBazen }}</td>
+        <td>{{ zakazivanje.kvadraturaLezaljkeStolovi }}</td>
+        <td>{{ zakazivanje.opis }}</td>
+        <td>
+          <ol class="list-unstyled">
+            <li *ngFor="let item of zakazivanje.odabraneUsluge">{{ item[0] }}</li>
+          </ol>
+        </td>
+        <td>
+          <label for="datumKrajaPrivatna" class="form-label">Datum pretpostavljenog kraja</label>
+          <input id="datumKrajaPrivatna" type="date" class="form-control mb-2" [(ngModel)]="zakazivanje.datumKraja">
+          <button class="btn btn-success" (click)="potvrdi(true, zakazivanje)">Prihvati</button>
+        </td>
+        <td>
+          <label for="komentarOdbijanjaPrivatna" class="form-label">Komentar</label>
+          <input id="komentarOdbijanjaPrivatna" type="text" class="form-control mb-2" [(ngModel)]="zakazivanje.komentarOdbijanja">
+          <button class="btn btn-danger" (click)="potvrdi(false, zakazivanje)">Odbij</button>
+        </td>
+      </ng-container>
+    </tr>
+  </tbody>
+</table>
+<h1 class="text-center mb-4">Trenutni poslovi</h1>
+<table class="table table-striped table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>Vreme pocetka</th>
+      <th>Pretpostavljen datum kraja</th>
+      <th>Kvadratura baste</th>
+      <th>Opis</th>
+      <th>Tip</th>
+      <th>Odabrane usluge</th>
+      <th>Slika</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let zakazivanje of listaZakazivanja">
+      <ng-container *ngIf="zakazivanje.prihvacenoOd == ja.korIme">
+        <td>{{ zakazivanje.vremeDolaska }}</td>
+        <td>{{ zakazivanje.datumKraja }}</td>
+        <td>{{ zakazivanje.kvadraturaBaste }}</td>
+        <td>{{ zakazivanje.opis }}</td>
+        <td>{{ zakazivanje.tip }}</td>
+        <td>
+          <ol class="list-unstyled">
+            <li *ngFor="let item of zakazivanje.odabraneUsluge">{{ item[0] }}</li>
+          </ol>
+        </td>
+        <td>
+          <ng-container *ngIf="zakazivanje.slikaZavrsetka == ''">
+            <button class="btn btn-primary" (click)="DodajSliku(zakazivanje)">Dodaj sliku</button>
+          </ng-container>
+          <ng-container *ngIf="zakazivanje.slikaZavrsetka != ''">
+            <img class="img-thumbnail" src="{{ zakazivanje.slikaZavrsetka }}" alt="Slika završetka">
+          </ng-container>
+        </td>
+      </ng-container>
+    </tr>
+  </tbody>
+</table>
+<h1 class="text-center mb-4">Uploadovanje slike</h1>
+<form class="text-center">
+  <div class="mb-3">
+    <label for="slika" class="form-label">Izaberi sliku</label>
+    <input type="file" id="slika" class="form-control" accept=".jpg,.jpeg,.png" (change)="change($event)">
+  </div>
+  <div *ngIf="dodataSlika">
+    <h4 class="mt-4">Pregled slike:</h4>
+    <img [src]="dodataSlika" class="img-thumbnail" alt="Pregled slike">
+  </div>
+</form>

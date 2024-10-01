@@ -1,0 +1,17 @@
+<form class="form-inline">
+    <div class="form-group mb-2">
+        <label for="komentar" class="sr-only">Komentar:</label>
+        <input type="text" class="form-control" id="komentar" [(ngModel)]="komentar" name="komentar" placeholder="Komentar">
+    </div>
+    <div class="form-group mb-2">
+        <label class="sr-only">Ocena:</label>
+        <div class="rating">
+            <span [class.filled]="ocena >= 1" (click)="postaviOcenu(1)">&#9733;</span>
+            <span [class.filled]="ocena >= 2" (click)="postaviOcenu(2)">&#9733;</span>
+            <span [class.filled]="ocena >= 3" (click)="postaviOcenu(3)">&#9733;</span>
+            <span [class.filled]="ocena >= 4" (click)="postaviOcenu(4)">&#9733;</span>
+            <span [class.filled]="ocena >= 5" (click)="postaviOcenu(5)">&#9733;</span>
+        </div>
+    </div>
+    <button type="button" class="btn btn-primary mb-2" (click)="azuriraj()">Postavi</button>
+</form>

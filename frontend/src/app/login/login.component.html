@@ -1,0 +1,16 @@
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <form class="login-form bg-light p-4 rounded shadow">
+      <div class="mb-3">
+        <label for="korIme" class="form-label">Korisničko ime:</label>
+        <input type="text" id="korIme" [(ngModel)]="korIme" class="form-control" name="korIme">
+      </div>
+      <div class="mb-3">
+        <label for="lozinka" class="form-label">Lozinka:</label>
+        <input type="password" id="lozinka" [(ngModel)]="lozinka" class="form-control" name="lozinka">
+      </div>
+      <div class="mb-3 text-center">
+        <label class="text-danger">{{message}}</label>
+      </div>
+      <button (click)="login()" class="btn btn-primary w-100">Log in</button>
+    </form>
+  </div>

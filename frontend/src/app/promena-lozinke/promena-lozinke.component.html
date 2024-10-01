@@ -1,0 +1,34 @@
+<div class="container mt-5">
+    <h3 class="text-center mb-4">Promena lozinke:</h3>
+  
+    <form [noValidate]="false">
+      <div class="row mb-3">
+        <label for="korIme" class="col-sm-3 col-form-label">Korisničko ime:</label>
+        <div class="col-sm-9">
+          <input type="text" [(ngModel)]="korIme" name="korIme" id="korIme" class="form-control">
+        </div>
+      </div>
+      <div class="row mb-3">
+        <label for="staraLozinka" class="col-sm-3 col-form-label">Stara lozinka:</label>
+        <div class="col-sm-9">
+          <input type="password" [(ngModel)]="staraLozinka" name="staraLozinka" id="staraLozinka" class="form-control">
+        </div>
+      </div>
+      <div class="row mb-3">
+        <label for="novaLozinka" class="col-sm-3 col-form-label">Nova lozinka:</label>
+        <div class="col-sm-9">
+          <input type="password" [(ngModel)]="novaLozinka" name="novaLozinka" id="novaLozinka" class="form-control">
+        </div>
+      </div>
+      <div class="row mb-3">
+        <label for="potvrda" class="col-sm-3 col-form-label">Potvrda nove lozinke:</label>
+        <div class="col-sm-9">
+          <input type="password" [(ngModel)]="potvrda" name="potvrda" id="potvrda" class="form-control">
+        </div>
+      </div>
+      <div class="text-danger mb-3" style="white-space: pre-line">{{poruka}}</div>
+      <div class="text-center">
+        <button (click)="promeniLozinku()" class="btn btn-primary">Promeni</button>
+      </div>
+    </form>
+  </div>

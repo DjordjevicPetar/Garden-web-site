@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img src="assets/logo.png" alt="App Logo" width="50" height="50" class="d-inline-block align-text-top">
+    </a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item" *ngIf="service.jelGost()">
+          <a class="nav-link" routerLink="/">Login</a>
+        </li>
+        <li class="nav-item" *ngIf="service.jelGost()">
+          <a class="nav-link" routerLink="/register">Register</a>
+        </li>
+        <li class="nav-item" *ngIf="service.jelGost()">
+          <a class="nav-link" routerLink="/promeniLozinku">Promeni lozinku</a>
+        </li>
+        <li class="nav-item" *ngIf="service.jelVlasnik()">
+          <a class="nav-link" routerLink="/vlasnikProfil">Profil</a>
+        </li>
+        <li class="nav-item" *ngIf="service.jelVlasnik()">
+          <a class="nav-link" routerLink="/prikazFirmi">Firme</a>
+        </li>
+        <li class="nav-item" *ngIf="service.jelVlasnik()">
+          <a class="nav-link" routerLink="/arhiva">Arhiva</a>
+        </li>
+        <li class="nav-item" *ngIf="service.jelVlasnik()">
+          <a class="nav-link" routerLink="/vlasnikOdrzavanje">Odrzavanje</a>
+        </li>
+        <li class="nav-item" *ngIf="service.jelDekorater()">
+          <a class="nav-link" routerLink="/dekoraterProfil">Profil</a>
+        </li>
+        <li class="nav-item" *ngIf="service.jelDekorater()">
+          <a class="nav-link" routerLink="/obradiZakazivanja">Zakazivanja</a>
+        </li>
+        <li class="nav-item" *ngIf="service.jelDekorater()">
+          <a class="nav-link" routerLink="/dekoraterOdrzavanje">Odrzavanje</a>
+        </li>
+        <li class="nav-item" *ngIf="service.jelDekorater()">
+          <a class="nav-link" routerLink="/statistika">Statistika</a>
+        </li>
+        <li class="nav-item" *ngIf="service.jelNeregistrovan()">
+          <a class="nav-link" routerLink="/neregistrovanKorisnik">Glavna strana</a>
+        </li>
+      </ul>
+      <!-- Logout button aligned to the right -->
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item" *ngIf="!service.jelGost()">
+          <a class="nav-link" routerLink="/" (click)="logout()">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
